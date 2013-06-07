@@ -1,5 +1,10 @@
 package org.jenkinsci.plugins.svnFileListParameter;
 
+/*
+ * repository 인증은 SubversionSCM 을 그대로 사용한다. 
+ */
+ 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -146,11 +151,7 @@ public class SvnFileListParameterDefinition extends ParameterDefinition
 		}
 		
 		SvnFileListParameterValue svnFileListParameterValue = req.bindJSON(SvnFileListParameterValue.class, jo);
-		
-		
-		System.out.println ("1111111111111111111111 : " + jo.toString());
-		System.out.println ("2222222222222222222222 : " + req.toString());
-      
+		      
 		return svnFileListParameterValue;
 		
 //		SvnFileListParameterValue value = req.bindJSON(SvnFileListParameterValue.class, jo);
