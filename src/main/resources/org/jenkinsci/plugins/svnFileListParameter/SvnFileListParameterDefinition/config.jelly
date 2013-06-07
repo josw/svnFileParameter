@@ -1,0 +1,10 @@
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <f:entry title="${%Name}" help="/plugin/SVNFolderParameterPlugin/name-help.html">
+		<f:textbox name="parameter.name" value="${instance.name}" />
+	</f:entry>
+	
+	<f:entry title="${%Repository URL}" help="/scm/SubversionSCM/url-help">
+	    <f:textbox name="parameter.svnUrl" value="${instance.svnUrl}" id="svn.remote.loc" checkUrl="'descriptorByName/hudson.scm.SubversionSCM/checkRemote?value='+toValue(document.getElementById('svn.remote.loc'))"/>
+	</f:entry>
+	
+</j:jelly>

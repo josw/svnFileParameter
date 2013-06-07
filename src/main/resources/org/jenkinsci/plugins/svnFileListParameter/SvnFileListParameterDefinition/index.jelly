@@ -1,0 +1,44 @@
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <!-- this div is required because of ParametersDefinitionProperty.java#117 -->
+    
+    
+    
+    <script>
+    
+    function refSvnFiles() {
+        var checkList = [];
+    	
+    	$$('.ssfile').each(function(idx) {
+    		if ($(idx).checked)
+    			checkList.push($(idx).getValue());
+    	});
+    	
+    	$('svnFiles').setValue(checkList);
+    }
+
+    Event.observe(window, 'load', function() {
+		
+		$$('.ssfile').invoke('observe','change', function() {
+			refSvnFiles();
+		});
+		
+    });
+    </script>
+    
+<f:entry>
+	<div name="parameter">
+		<input type="hidden" name="name" value="${it.name}"/>
+		<f:checkbox name="isRev" id="isRev" value="1"/>Revision :
+		<input name="revision" value="HEAD" style="width:100px"/>
+		<input name="svnFiles" id="svnFiles" type="hidden"/>
+    </div> 
+    
+	<f:optionalBlock name="dynamic" title="Select File">
+		<f:entry>
+			<j:forEach var="value" items="${it.svnUpdated}">
+				<input type="checkbox" name="sfile" value="${value.filePath}" class="ssfile"/>${value.filePath}<br/>
+			</j:forEach>
+		</f:entry>
+	</f:optionalBlock>
+</f:entry>
+</j:jelly>
